@@ -36,3 +36,29 @@
     transform: rotate(360deg);
   }
 }
+
+.input_searchterm {
+  position: relative;
+  width: 40% !important;
+  padding: 15px 15px 15px 60px !important;
+  font-size: 125% !important;
+  border-radius: 12px !important;
+  background-color: gainsboro;
+  border: 0px;
+}
+.btn_search {
+  padding: 15px 10px;
+  margin-left: 10px;
+}
+.fa-search {
+  position: relative;
+  margin-right: -45px;
+  top: 5px;
+  z-index: 10000;
+}
+
+.results_block {
+  padding-top: 20px;
+  width: 70%;
+  margin: 0px auto;
+}
