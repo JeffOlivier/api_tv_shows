@@ -62,3 +62,7 @@
   width: 70%;
   margin: 0px auto;
 }
+
+.centerMe {
+  text-align: center;
+}

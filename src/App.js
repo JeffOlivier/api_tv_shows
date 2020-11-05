@@ -27,8 +27,12 @@ class App extends Component {
 
   render() {
     let foundShowsOutput;
-    if (this.state.hasSearchedBefore && this.state.shows.length === 0) {
-      foundShowsOutput = <div>Could not find any shows matching "<strong>{this.state.searchTerm}</strong>"</div>
+    if (!this.state.hasSearchedBefore) {
+      foundShowsOutput = <div class="centerMe">Use the search field above to find TV shows</div> 
+    // } else if (this.state.loading) {
+    //   return <div class="centerMe">finding TV shows ...</div>
+    } else if (this.state.hasSearchedBefore && this.state.shows.length === 0) {
+      foundShowsOutput = <div class="centerMe">Could not find any shows matching "<strong>{this.state.searchTerm}</strong>"</div>
     } else {
       foundShowsOutput = this.state.shows.map((show) => (
         <SingleShow {...show.show}/>
@@ -39,12 +43,10 @@ class App extends Component {
       <React.Fragment>
 
         <div className="App">
-          <header className="App-header2">
-            <div className="fubar">
+          <header>
             <span className="fas fa-search fa-2x"></span>
             <input id="findSearchTerm" className="input_searchterm" type="text" placeholder="Enter search term" required />
             <button className="btn btn_search" type='button' onClick={() => this.fetchResults(document.getElementById('findSearchTerm').value)}>SEARCH</button>
-            </div>
           </header>
         </div>
 
