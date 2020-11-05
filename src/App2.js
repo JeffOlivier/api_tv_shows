@@ -8,13 +8,13 @@ class App extends Component {
     hasSearchedBefore: false,
     searchTerm: '',
     loading: false,
-    shows: {}
+    shows: []
   };
 
   async fetchResults(searchTerm1) {
     const url = "https://api.tvmaze.com/search/shows?q=";
     const searchTerm = searchTerm1.trim();
-    let listOfShows = [];
+    // let listOfShows = [];
 
     if (searchTerm == null) return;
     
@@ -22,7 +22,8 @@ class App extends Component {
     
     await fetch(url+searchTerm)
         .then(response => response.json())
-        .then(response => { listOfShows = response; })
+        .then(response => this.setState({ shows: response }))
+        // .then(response => { listOfShows = response; })
   //.then( data => {console.log('listOfShows',listOfShows); })
         .catch(err => { console.log(err); });
     
@@ -48,35 +49,27 @@ class App extends Component {
     //         </ul>
     //     </div>
     // );
-console.log('listOfShows', listOfShows);
+// console.log('listOfShows', listOfShows);
 
-let tmpoutput = `<div class="results_block">`;
-if (listOfShows.length > 0) {
-    for (var i = 0; i < listOfShows.length; i++){
-      var singleShowObj = listOfShows[i];
-      tmpoutput += `<div class="showBlock">
-  <img src=${singleShowObj.show.image.medium}>
-  <div class="showInfo">
-      <h1>${singleShowObj.show.name}</h1>
-      <p>${singleShowObj.show.summary}</p>
-      <a href=${singleShowObj.show.url} target="new">
-        <button class="btn btn_episodes" type='button'>More about this show</button>
-      </a>
-  </div>
-</div>`;
-    }
-    //${this.formatRating(singleShowObj.show.rating.average)}
+// let tmpoutput = `<div class="results_block">`;
 
-    let showsOutput = document.getElementById("listOfShows");
-//var text = document.createTextNode("This just got added");
+// if (listOfShows.length > 0) {
+//     for (var i = 0; i < listOfShows.length; i++){
+//       // var singleShowObj = listOfShows[i];
+//       tmpoutput += <SingleShow props={listOfShows[i]}/>
+//     }
+//     //${this.formatRating(singleShowObj.show.rating.average)}
 
-    showsOutput.innerHTML = tmpoutput;
-  }
-  else { tmpoutput += `Could not find shows matching "<strong>${searchTerm1}</strong>"`; }
+//     let showsOutput = document.getElementById("listOfShows");
+// //var text = document.createTextNode("This just got added");
 
-  tmpoutput += `</div>`;
+//     showsOutput.innerHTML = tmpoutput;
+//   }
+//   else { tmpoutput += `Could not find shows matching "<strong>${searchTerm1}</strong>"`; }
 
-  console.log(tmpoutput);
+//   tmpoutput += `</div>`;
+
+//   console.log(tmpoutput);
 }
 
   render() {
@@ -94,7 +87,15 @@ if (listOfShows.length > 0) {
         </div>
 
         <main className="container">
-          <div id="listOfShows"></div>
+          <div id="listOfShows" className="results_block">
+
+          {this.state.shows.map((show) => (
+              <SingleShow {...show.show}/>
+          ))}
+          
+  {/* else { tmpoutput += `Could not find shows matching "<strong>${searchTerm1}</strong>"`; } */}
+
+          </div>
         </main>
       </React.Fragment>
     );
@@ -103,6 +104,22 @@ if (listOfShows.length > 0) {
   formatRating(rating) {
     return rating === null ? 'rating n/a' : `${rating} stars`;
   }
+}
+
+
+const SingleShow = (props) => {
+  return (
+    <div class="showBlock">
+      <img src={props.image.medium} alt='show pic'/>
+      <div class="showInfo">
+        <h1>{props.name}</h1>
+        <div dangerouslySetInnerHTML={{__html: props.summary}}></div>
+        {/* <p>{props.summary}</p> */}
+        <a href={props.url} target="new">
+          <button class="btn btn_episodes" type='button'>More about this show</button>
+        </a>
+      </div>
+    </div>);
 }
 
 export default App;

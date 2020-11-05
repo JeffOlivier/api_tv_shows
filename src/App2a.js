@@ -51,11 +51,19 @@ class App extends Component {
 console.log('listOfShows', listOfShows);
 
 let tmpoutput = `<div class="results_block">`;
-
 if (listOfShows.length > 0) {
     for (var i = 0; i < listOfShows.length; i++){
-      // var singleShowObj = listOfShows[i];
-      tmpoutput += <SingleShow props={listOfShows[i]}/>
+      var singleShowObj = listOfShows[i];
+      tmpoutput += `<div class="showBlock">
+  <img src=${singleShowObj.show.image.medium}>
+  <div class="showInfo">
+      <h1>${singleShowObj.show.name}</h1>
+      <p>${singleShowObj.show.summary}</p>
+      <a href=${singleShowObj.show.url} target="new">
+        <button class="btn btn_episodes" type='button'>More about this show</button>
+      </a>
+  </div>
+</div>`;
     }
     //${this.formatRating(singleShowObj.show.rating.average)}
 
@@ -86,9 +94,7 @@ if (listOfShows.length > 0) {
         </div>
 
         <main className="container">
-          <div id="listOfShows">
-            
-          </div>
+          <div id="listOfShows"></div>
         </main>
       </React.Fragment>
     );
@@ -97,21 +103,6 @@ if (listOfShows.length > 0) {
   formatRating(rating) {
     return rating === null ? 'rating n/a' : `${rating} stars`;
   }
-}
-
-
-const SingleShow = (props) => {
-  return (
-    <div class="showBlock">
-    <img src={props.image.medium} />
-    <div class="showInfo">
-        <h1>{props.name}</h1>
-        <p>{props.summary}</p>
-        <a href={props.url} target="new">
-          <button class="btn btn_episodes" type='button'>More about this show</button>
-        </a>
-    </div>
-  </div>);
 }
 
 export default App;

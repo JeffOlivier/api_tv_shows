@@ -50,8 +50,8 @@ console.log ('searchTerm: '+this.props.searchTerm);
         return (
             <div>
                 <ul>
-                    {this.state.shows.map((returnedList) => (
-                        <li key={returnedList.show.id}><a href={returnedList.show.url} target="new">{returnedList.show.name}</a> : ({this.formatRating(null)}{returnedList.show.rating.average}) stars)</li>
+                    {this.state.shows.map((show) => (
+                        <li key={show.show.id}><a href={show.show.url} target="new">{show.show.name}</a> : ({this.formatRating(null)}{show.show.rating.average}) stars)</li>
                     ))}
                 </ul>
             </div>
