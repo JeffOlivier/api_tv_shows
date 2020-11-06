@@ -25,9 +25,11 @@ button:focus {
   font-size: 100%;
   border-radius: 12px;
 }
+
+/* Set a hover effect for the button */
 .btn:hover {
   opacity: 0.8;
-} /* Set a hover effect for the button */
+}
 .header {
   background-color: darkblue;
   width: 100%;

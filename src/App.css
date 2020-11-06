@@ -37,6 +37,11 @@
   }
 }
 
+header {
+  display: flex;
+  justify-content: center;
+}
+
 .input_searchterm {
   position: relative;
   width: 40% !important;
@@ -44,7 +49,7 @@
   font-size: 125% !important;
   border-radius: 12px !important;
   background-color: gainsboro;
-  border: 0px;
+  border: 2px solid transparent;
 }
 .btn_search {
   padding: 15px 10px;
@@ -53,7 +58,7 @@
 .fa-search {
   position: relative;
   margin-right: -45px;
-  top: 5px;
+  top: 10px;
   z-index: 10000;
 }
 
@@ -65,4 +70,22 @@
 
 .centerMe {
   text-align: center;
+}
+
+.textInputError {
+  border-color: red !important;
+}
+
+.submitButtonDisable {
+  background-color: silver !important;
+}
+
+.inputErrorMessage {
+  display: none;
+  position: absolute;
+  top: 69px;
+  margin-top: 200;
+  font-size: 75%;
+  font-weight: bold;
+  color: red;
 }
