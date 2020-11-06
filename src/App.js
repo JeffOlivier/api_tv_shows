@@ -21,9 +21,20 @@ class App extends Component {
     const validChars = /^[a-zA-Z0-9]+$/i;
     const searchInput = e.target.value;
 
-    this.setState({ isSearchFormValid: validChars.test(searchInput) });
+    const isFormInputValid = validChars.test(searchInput);
+    this.setState({ isSearchFormValid: isFormInputValid });
 
-    document.getElementById('searchBtn').disabled = !(this.state.isSearchFormValid);
+    document.getElementById('searchBtn').disabled = !(isFormInputValid);
+  
+    if (isFormInputValid) {
+      document.getElementById("findSearchTerm").classList.remove("textInputError");
+      document.getElementById("searchBtn").classList.remove("submitButtonDisable");
+      document.getElementById("inputErrorMessage").style.display = "none";
+    } else {
+      document.getElementById("findSearchTerm").classList.add("textInputError");
+      document.getElementById("searchBtn").classList.add("submitButtonDisable");
+      document.getElementById("inputErrorMessage").style.display = "block";
+    }
   }
 
   async fetchResults(searchTerm1) {
@@ -44,8 +55,8 @@ class App extends Component {
     let foundShowsOutput;
     if (!this.state.hasSearchedBefore) {
       foundShowsOutput = <div className="centerMe">Use the search field above to find TV shows</div> 
-    // } else if (this.state.loading) {
-    //   return <div className="centerMe">finding TV shows ...</div>
+    } else if (this.state.loading) {
+       return <div className="centerMe">finding TV shows ...</div>
     } else if (this.state.hasSearchedBefore && this.state.shows.length === 0) {
       foundShowsOutput = <div className="centerMe">Could not find any shows matching "<strong>{this.state.searchTerm}</strong>"</div>
     } else {
@@ -59,6 +70,7 @@ class App extends Component {
 
         <div className="App">
           <header>
+            <div id="inputErrorMessage" className="inputErrorMessage">Only letters and numbers are allowed in this search form</div>
             <span className="fas fa-search fa-2x"></span>
             <input id="findSearchTerm" className="input_searchterm" type="text" onKeyUp={this.handleValidateInput} placeholder="Enter search term" required />
             <button id="searchBtn" className="btn btn_search" type='button' onClick={() => this.fetchResults(document.getElementById('findSearchTerm').value)}>SEARCH</button>
