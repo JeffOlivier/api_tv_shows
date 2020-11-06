@@ -2,15 +2,20 @@ import React from 'react';
 import styles from './singleShow.module.css';
 
 const SingleShow = (props) => {
+    const imageUrl = ((props.image != null) && (props.image.medium != null)) ? props.image.medium : './no-image.png';
+    const title = (props.name != null) ? props.name : 'Untitled';
+    const summary = (props.summary != null) ? props.summary : '';
+    const moreLink = (props.url != null) ? 
+        `<a href=${props.url} target="new"><button class="btn ${styles.btn_episodes}" type='button'>More about this show</button></a>` 
+    : '';
+
     return (
         <div className={styles.showBlock}>
-            <img src={props.image.medium} alt='show pic'/>
+            <img src={imageUrl} alt='show pic'/>
             <div className={styles.showInfo}>
-                <h1>{props.name}</h1>
-                <div dangerouslySetInnerHTML={{__html: props.summary}}></div>
-                <a href={props.url} target="new">
-                    <button className={`btn ${styles.btn_episodes}`} type='button'>More about this show</button>
-                </a>
+                <h1>{title}</h1>
+                <div dangerouslySetInnerHTML={{__html: summary}}></div>
+                <div dangerouslySetInnerHTML={{__html: moreLink}}></div>
             </div>
         </div>
     );
