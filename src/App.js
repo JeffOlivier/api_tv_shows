@@ -21,9 +21,10 @@ class App extends Component {
     const validChars = /^[a-zA-Z0-9]+$/i;
     const searchInput = e.target.value;
 
-    this.setState({ isSearchFormValid: validChars.test(searchInput) });
+    const isFormInputValid = validChars.test(searchInput);
+    this.setState({ isSearchFormValid: isFormInputValid });
 
-    document.getElementById('searchBtn').disabled = !(this.state.isSearchFormValid);
+    document.getElementById('searchBtn').disabled = !(isFormInputValid);
   }
 
   async fetchResults(searchTerm1) {
@@ -44,8 +45,8 @@ class App extends Component {
     let foundShowsOutput;
     if (!this.state.hasSearchedBefore) {
       foundShowsOutput = <div className="centerMe">Use the search field above to find TV shows</div> 
-    // } else if (this.state.loading) {
-    //   return <div className="centerMe">finding TV shows ...</div>
+    } else if (this.state.loading) {
+       return <div className="centerMe">finding TV shows ...</div>
     } else if (this.state.hasSearchedBefore && this.state.shows.length === 0) {
       foundShowsOutput = <div className="centerMe">Could not find any shows matching "<strong>{this.state.searchTerm}</strong>"</div>
     } else {
