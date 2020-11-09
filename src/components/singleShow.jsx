@@ -9,13 +9,16 @@ const SingleShow = (props) => {
         `<a href=${props.url} target="new"><button class="btn ${styles.btn_episodes}" type='button'>More about this show</button></a>` 
     : '';
 
+    const episodesButtonClasses = `btn ${styles.btn_episodes}`;
+
     return (
         <div className={styles.showBlock}>
             <img src={imageUrl} alt='show pic'/>
             <div className={styles.showInfo}>
                 <h1>{title}</h1>
                 <div dangerouslySetInnerHTML={{__html: summary}}></div>
-                <div dangerouslySetInnerHTML={{__html: moreLink}}></div>
+                {/* <div dangerouslySetInnerHTML={{__html: moreLink}}></div> */}
+                <button className={episodesButtonClasses} onClick={() => props.showEpisodes(props.id)} type='button'>Show Episodes</button>
             </div>
         </div>
     );

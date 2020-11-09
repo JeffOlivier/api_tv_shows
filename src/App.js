@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SingleShow from "./components/singleShow";
+import SingleEpisode from "./components/singleEpisode";
 
 import "./App.css";
 
@@ -11,7 +12,10 @@ class App extends Component {
       searchTerm: '',
       loading: false,
       shows: [],
-      isSearchFormValid: true
+      isSearchFormValid: true,
+      loadingEpisodes: false,
+      episodes: [],
+      showWhat: ''
     };
 
     this.handleValidateInput = this.handleValidateInput.bind(this);
@@ -37,7 +41,7 @@ class App extends Component {
     }
   }
 
-  async fetchShows(searchTerm1) {
+  fetchShows = (searchTerm1) => {
     const searchTerm = searchTerm1.trim();
     const apiFullUrl = `https://api.tvmaze.com/search/shows?q=${searchTerm}`;
 
@@ -45,24 +49,29 @@ class App extends Component {
     
     this.setState({ loading: true });
     
-    await fetch(apiFullUrl)
+    fetch(apiFullUrl)
         .then(response => response.json())
         .then(response => this.setState({ shows: response, hasSearchedBefore: true, loading: false, searchTerm: searchTerm }))
         .catch(err => { console.log(err); });
+    
+    this.setState({ showWhat: 'shows' });
   }
 
-  async fetchEpisodes(searchTerm1) {
-    const searchTerm = searchTerm1.trim();
-    const apiFullUrl = `https://api.tvmaze.com/search/shows?q=${searchTerm}`;
+  fetchEpisodes = (showId) => {
+    const apiEpisodesUrl = `https://api.tvmaze.com/shows/${showId}/episodes`;
+    
+// console.log('Request to get episodes for show ID:'+showId);
+console.log('apiEpisodesUrl', apiEpisodesUrl);
 
-    if ((searchTerm == null) || (searchTerm === '')) return;
+    this.setState({ loadingEpisodes: true });
     
-    this.setState({ loading: true });
-    
-    await fetch(apiFullUrl)
+    fetch(apiEpisodesUrl)
         .then(response => response.json())
-        .then(response => this.setState({ shows: response, hasSearchedBefore: true, loading: false, searchTerm: searchTerm }))
+        .then(response => this.setState({ episodes: response, loadingEpisodes: false }))
+// .then(response => console.log('EPISODES', this.state.episodes))
         .catch(err => { console.log(err); });
+    
+    this.setState({ showWhat: 'episodes' });
   }
 
   render() {
@@ -71,11 +80,15 @@ class App extends Component {
       foundShowsOutput = <div className="centerMe">Use the search field above to find TV shows</div> 
     } else if (this.state.loading) {
        return <div className="centerMe">finding TV shows ...</div>
+    } else if (this.state.showWhat === 'episodes') {
+      foundShowsOutput = this.state.episodes.map((episode) => (
+        <SingleEpisode {...episode} key={episode.id} />
+      ))
     } else if (this.state.hasSearchedBefore && this.state.shows.length === 0) {
       foundShowsOutput = <div className="centerMe">Could not find any shows matching "<strong>{this.state.searchTerm}</strong>"</div>
     } else {
       foundShowsOutput = this.state.shows.map((show) => (
-        <SingleShow {...show.show} key={show.show.id}/>
+        <SingleShow {...show.show} key={show.show.id} showEpisodes={this.fetchEpisodes}/>
       ))
     }
 
