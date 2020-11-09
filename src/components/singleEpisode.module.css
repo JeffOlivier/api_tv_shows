@@ -1,0 +1,32 @@
+.episodeBlock {
+  background-color: gainsboro;
+  padding: 20px;
+  margin-top: 30px;
+
+  display: grid;
+  max-width: 600px;
+  grid-template-areas: "epNumber epTitle" "epNumber epData";
+  grid-template-columns: auto 1fr;
+  /* grid-template-rows: 50px 50px; */
+  grid-column-gap: 20px;
+  /* grid-auto-flow: column; */
+}
+.episodeNumber {
+  grid-area: epNumber;
+  padding-left: 50px;
+  font-size: 125%;
+  border-radius: 6px;
+}
+.episodeTitle {
+  grid-area: epTitle;
+  align-self: center;
+  font-weight: bold;
+}
+.episodeData {
+  grid-area: epData;
+  align-self: center;
+}
+
+.btn_episode {
+  padding: 15px 15px;
+}
