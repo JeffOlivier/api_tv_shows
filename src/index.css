@@ -8,10 +8,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
+} */
 
 input:focus,
 button:focus {
@@ -30,6 +30,7 @@ button:focus {
 .btn:hover {
   opacity: 0.8;
 }
+
 .header {
   background-color: darkblue;
   width: 100%;
