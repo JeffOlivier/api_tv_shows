@@ -37,7 +37,21 @@ class App extends Component {
     }
   }
 
-  async fetchResults(searchTerm1) {
+  async fetchShows(searchTerm1) {
+    const searchTerm = searchTerm1.trim();
+    const apiFullUrl = `https://api.tvmaze.com/search/shows?q=${searchTerm}`;
+
+    if ((searchTerm == null) || (searchTerm === '')) return;
+    
+    this.setState({ loading: true });
+    
+    await fetch(apiFullUrl)
+        .then(response => response.json())
+        .then(response => this.setState({ shows: response, hasSearchedBefore: true, loading: false, searchTerm: searchTerm }))
+        .catch(err => { console.log(err); });
+  }
+
+  async fetchEpisodes(searchTerm1) {
     const searchTerm = searchTerm1.trim();
     const apiFullUrl = `https://api.tvmaze.com/search/shows?q=${searchTerm}`;
 
@@ -67,19 +81,16 @@ class App extends Component {
 
     return (
       <React.Fragment>
-
         <div className="searchContainer">
             <div id="inputErrorMessage" className="inputErrorMessage">Only letters and numbers are allowed in this search form</div>
             <span className="fas fa-search fa-2x"></span>
             <input id="findSearchTerm" className="input_searchterm" type="text" onKeyUp={this.handleValidateInput} placeholder="Enter search term" required />
-            <button id="searchBtn" className="btn btn_search" type='button' onClick={() => this.fetchResults(document.getElementById('findSearchTerm').value)}>SEARCH</button>
+            <button id="searchBtn" className="btn btn_search" type='button' onClick={() => this.fetchShows(document.getElementById('findSearchTerm').value)}>SEARCH</button>
         </div>
 
-        <main className="resultsContainer">
-          <div id="listOfShows" className="results_block">
-            {foundShowsOutput}
-          </div>
-        </main>
+        <div id="listOfShows" className="results_block">
+          {foundShowsOutput}
+        </div>
       </React.Fragment>
     );
   }
