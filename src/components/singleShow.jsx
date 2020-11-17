@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import styles from './singleShow.module.css';
 
 const SingleShow = (props) => {
@@ -18,7 +19,8 @@ const SingleShow = (props) => {
                 <h1>{title}</h1>
                 <div dangerouslySetInnerHTML={{__html: summary}}></div>
                 {/* <div dangerouslySetInnerHTML={{__html: moreLink}}></div> */}
-                <button className={episodesButtonClasses} onClick={() => props.showEpisodes(props.id)} type='button'>Show Episodes</button>
+                {/* <button className={episodesButtonClasses} onClick={() => props.showEpisodes(props.id)} type='button'>Show Episodes</button> */}
+                <Link to="/episodes?id={props.id}"><button className={episodesButtonClasses} type='button'>Show Episodes</button></Link>
             </div>
         </div>
     );
