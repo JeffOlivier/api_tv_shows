@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './singleShow.module.css';
+import styles from './SingleShow.module.css';
 
 const SingleShow = (props) => {
     const imageUrl = ((props.image != null) && (props.image.medium != null)) ? props.image.medium : './no-image.png';
@@ -18,7 +18,7 @@ const SingleShow = (props) => {
                 <h1>{title}</h1>
                 <div dangerouslySetInnerHTML={{__html: summary}}></div>
                 {/* <div dangerouslySetInnerHTML={{__html: moreLink}}></div> */}
-                <button className={episodesButtonClasses} onClick={() => props.showEpisodes(props.id)} type='button'>Show Episodes</button>
+                {/* <button className={episodesButtonClasses} onClick={() => props.showEpisodes(props.id)} type='button'>Show Episodes</button> */}
             </div>
         </div>
     );
