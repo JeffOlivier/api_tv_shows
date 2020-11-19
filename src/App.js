@@ -17,6 +17,22 @@ class App extends Component {
     this.handleValidateInput = this.handleValidateInput.bind(this);
   }
 
+  timerId = 0;
+  componentDidUpdate(previousProps, previouState) {
+    if (previouState.searchTerm !== this.state.searchTerm) {
+      clearTimeout(this.timerId);
+      setTimeout(this.searchForShows.bind(this), 1000);
+    }
+  }
+
+  searchForShows() {
+   this.fetchShows(this.state.searchTerm);
+  }
+
+  updateSearchTerm(term) {
+    this.setState({searchTerm: term});
+  }
+
   handleValidateInput = e => {
     const validChars = /^[a-zA-Z0-9]+$/i;
     const searchInput = e.target.value;
@@ -84,8 +100,9 @@ class App extends Component {
         <div className="searchContainer">
             <div id="inputErrorMessage" className="inputErrorMessage">Only letters and numbers are allowed in this search form</div>
             <span className="fas fa-search fa-2x"></span>
-            <input id="findSearchTerm" className="input_searchterm" type="text" onKeyUp={this.handleValidateInput} placeholder="Enter search term" required />
-            <button id="searchBtn" className="btn btn_search" type='button' onClick={() => this.fetchShows(document.getElementById('findSearchTerm').value)}>SEARCH</button>
+            {/* <input id="findSearchTerm" className="input_searchterm" type="text" onKeyUp={this.handleValidateInput} placeholder="Enter search term" required />
+            <button id="searchBtn" className="btn btn_search" type='button' onClick={() => this.fetchShows(document.getElementById('findSearchTerm').value)}>SEARCH</button> */}
+            <input id="findSearchTerm" className="input_searchterm" type="text" onChange={(event) => this.updateSearchTerm(event.target.value)} value={this.state.searchTerm}/>
         </div>
 
         <div id="listOfShows" className="results_block">
