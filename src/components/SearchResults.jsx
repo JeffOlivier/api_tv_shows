@@ -15,6 +15,13 @@ class SearchResults extends Component {
       };
     }
  
+    // componentDidUpdate(previousProps, previouState) {
+    //     if (previouState.shows !== this.state.shows) {
+    //       clearTimeout(this.timerId);
+    //       setTimeout(this.searchForShows.bind(this), 1000);
+    //     }
+    // }
+
  /* <div id="listOfShows" className="results_block">
     {foundShowsOutput}
 </div> */
@@ -27,6 +34,7 @@ handleDelete = (counterId) => {
 //   onClick={() => this.props.onIncrement(this.props.counter)}
 
 fetchShows = async () => {
+    console.log('I am fetching shows!');
     const searchTerm = this.props.searchTerm.trim();
     const apiFullUrl = `https://api.tvmaze.com/search/shows?q=${searchTerm}`;
 
@@ -51,7 +59,7 @@ fetchShows = async () => {
     // }
     
     // this.setState({ showWhat: 'shows' });
-}
+};
 
     render() {
         let foundShowsOutput;

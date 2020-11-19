@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './SingleShow.module.css';
+import styles from './singleShow.module.scss';
 
 const SingleShow = (props) => {
     const imageUrl = ((props.image != null) && (props.image.medium != null)) ? props.image.medium : './no-image.png';
