@@ -16,7 +16,7 @@ const CurrentShow = (props) => {
             <h1>{rating} STARS</h1>
             <div dangerouslySetInnerHTML={{__html: summary}}></div>
         </React.Fragment>
-    );
+    )
 }
  
 export default CurrentShow;

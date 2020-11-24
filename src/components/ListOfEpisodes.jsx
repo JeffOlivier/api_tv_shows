@@ -13,7 +13,9 @@ class ListOfEpisodes extends Component {
           numberOfSeason: 1
         };
 
-        // this.fetchShowInfo = this.fetchShowInfo.bind(this);
+        this.fetchShowInfo = this.fetchShowInfo.bind(this);
+        this.getNumberOfSeasons = this.getNumberOfSeasons.bind(this);
+        this.seasonChooser = this.seasonChooser.bind(this);
     }
 
     componentDidMount() {
@@ -33,34 +35,35 @@ class ListOfEpisodes extends Component {
     //     }
     // }
 
+    
     fetchShowInfo = async () => {
         console.log('I am fetching a single show!');
-        // const showId = this.props.showId;
-//         if (showId !== undefined && Number.isInteger(showId) && showId > 0) {
-//             let apiFullUrl = `https://api.tvmaze.com/shows/${showId}`;
+        const showId = this.props.showId;
+        if (showId !== undefined && Number.isInteger(showId) && showId > 0) {
+            let apiFullUrl = `https://api.tvmaze.com/shows/${showId}`;
         
-//             const apiCall1 = await fetch(apiFullUrl)
-//             const response1 = await apiCall1.json()
+            const apiCall1 = await fetch(apiFullUrl)
+            const response1 = await apiCall1.json()
 
-// console.log('response1', response1);
-//             if (response1.status !== 404) {
-// console.log('NOW, I am fetching episodes');
-//                 this.setState({ show: response1 });
-//                 apiFullUrl += '/episodes';
-//                 const apiCall2 = await fetch(apiFullUrl);
-//                 const response2 = await apiCall2.json();
+console.log('response1', response1);
+            if (response1.status !== 404) {
+console.log('NOW, I am fetching episodes');
+                this.setState({ show: response1 });
+                apiFullUrl += '/episodes';
+                const apiCall2 = await fetch(apiFullUrl);
+                const response2 = await apiCall2.json();
 
-//                 if (response2.status !== 404) {
-//                     this.setState({ episodes: response2 });
-//                     console.log('response2', response2);
-//                     this.getNumberOfSeasons(response2);
-//                 }
-//             }
+                if (response2.status !== 404) {
+                    this.setState({ episodes: response2 });
+                    console.log('response2', response2);
+                    this.getNumberOfSeasons(response2);
+                }
+            }
 
-//         } else { console.log('FAILED TO FETCH A SHOW'); return; }
+        } else { console.log('FAILED TO FETCH A SHOW'); return; }
     };
 
-    getNumberOfSeasons = (response2) => {
+    getNumberOfSeasons(response2) {
         let seasonNumber = 1;
         response2.map((episode) => (
             seasonNumber = (episode.season > seasonNumber) ? episode.season : seasonNumber
@@ -69,7 +72,7 @@ class ListOfEpisodes extends Component {
         this.setState({ numberOfSeason: seasonNumber });
     }
 
-    seasonChooser = () => {
+    seasonChooser() {
         if (this.state.numberOfSeason <= 1) return;
 
         let retVal = '<select>';
@@ -99,9 +102,10 @@ class ListOfEpisodes extends Component {
         return (
             <React.Fragment>
                 {/* {(() => { if (this.state.show.length > 0) { return <div className={styles.showContainer}><CurrentShow {...this.state.show} /></div> })()} */}
-                {/* <div className={styles.showContainer}><CurrentShow {...this.state.show} /></div> */}
+                <div className={styles.showContainer}><CurrentShow {...this.state.show} /></div>
                 <div className={styles.episodesContainer}>
-                    {this.seasonChooser}
+                    <div dangerouslySetInnerHTML={{__html: this.seasonChooser()}}></div>
+                    {/* {this.seasonChooser()} */}
                     {this.state.episodes.map(episode => {
                         return (episode.season === this.state.season) ?
                             <SingleEpisode {...episode} key={episode.id} />
