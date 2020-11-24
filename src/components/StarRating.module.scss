@@ -1,0 +1,29 @@
+.starsOuter {
+  display: inline-block;
+  position: relative;
+  font-family: "Font Awesome 5 Free";
+  font-size: large;
+}
+
+.starsOuter::before {
+  /* EMPTY */
+  color: #000000;
+  font-weight: 300;
+  content: "\f005 \f005 \f005 \f005 \f005";
+}
+
+.starsInner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 50%;
+}
+
+.starsInner::before {
+  /* SOLID */
+  font-weight: 900;
+  content: "\f005 \f005 \f005 \f005 \f005";
+  color: #f8ce0b;
+}

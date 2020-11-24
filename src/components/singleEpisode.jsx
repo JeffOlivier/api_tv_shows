@@ -1,12 +1,12 @@
 import React from 'react';
-import styles from './singleEpisode.module.css';
+import styles from './SingleEpisode.module.scss';
 
 const SingleEpisode = (props) => {
-    const imageUrl = ((props.image != null) && (props.image.medium != null)) ? props.image.medium : './no-image.png';
+    // const imageUrl = ((props.image != null) && (props.image.medium != null)) ? props.image.medium : './no-image.png';
     const title = (props.name != null) ? props.name : 'Untitled';
     // const season = (props.season != null) ? props.season : 0;
     const episode = (props.number != null) ? String(props.number).padStart(2, '0') : 0;
-    const runtime = (props.runtime != null) ? `${props.runtime} minutes | ` : '';
+    const runtime = (props.runtime != null) ? `${props.runtime} minutes` : '';
     const airdate = (props.airdate != null) ? new Date(props.airdate).toLocaleDateString("en-US", {year: "numeric", month: "long", day: "numeric"}) : '(Airdate unknown)';
 // //dateFormat(props.airdate, "mmmm d, yyyy")
 //     let d = new Date(airdate);
@@ -21,6 +21,10 @@ const SingleEpisode = (props) => {
     // : '';
 
     const episodeButtonClasses = `btn ${styles.btn_episode} ${styles.episodeNumber}`;
+
+    const episodeImage = ((props.image != null) && (props.image.medium != null)) ?
+        <img className={styles.episodeImage} src={props.image.medium} alt='episode pic'/>
+    : '';
 
     return (
         // <div className={styles.showBlock}>
@@ -37,8 +41,9 @@ const SingleEpisode = (props) => {
         <div className={styles.episodeBlock}>
             <div className={episodeButtonClasses}>{episode}</div>
             <div className={styles.episodeTitle}>{title}</div>
-            <div className={styles.episodeData}>{runtime}{airdate}</div>
-            <img className={styles.episodeImage} src={imageUrl} alt='episode pic'/>
+            <div className={styles.episodeData}>{airdate} ({runtime})</div>
+            {/* <img className={styles.episodeImage} src={imageUrl} alt='episode pic'/> */}
+            {episodeImage}
         </div>
     );
 }

@@ -15,10 +15,11 @@ class PageLayout extends Component {
       this.state = {
         searchTerm: '',
       };
+
+      this.updateSearchTerm = this.updateSearchTerm.bind(this);
     }
 
     updateSearchTerm = (searchTerm) => {
-        console.log("Event Handler 'updateSearchTerm' Called : ", searchTerm);
         // const counters = this.state.counters.filter((c) => c.id !== counterId);
         this.setState({ searchTerm: searchTerm.trim() });
     };
@@ -26,7 +27,7 @@ class PageLayout extends Component {
     render() {
         var searchResultsSection;
         if (this.state.searchTerm === '') {
-            searchResultsSection = <div className="centerMe">Use the search field above to find TV shows</div>;
+            searchResultsSection = <div className={styles.startText}>Use the search field above to find TV shows</div>;
         } else {
             searchResultsSection =  <SearchResults searchTerm={this.state.searchTerm} />;
         }

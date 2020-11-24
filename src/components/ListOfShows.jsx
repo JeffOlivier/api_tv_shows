@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import SingleShow from './singleShow';
+import SingleShow from './SingleShow';
+import styles from './ListOfShows.module.scss';
 
 class ListOfShows extends Component {
     constructor(props) {
@@ -7,6 +8,8 @@ class ListOfShows extends Component {
         this.state = {
           shows: [],
         };
+
+        this.fetchShows = this.fetchShows.bind(this);
     }
 
     componentDidMount() {
@@ -22,7 +25,6 @@ class ListOfShows extends Component {
     }
 
     fetchShows = async () => {
-        console.log('I am fetching shows!');
         const searchTerm = this.props.searchTerm.trim();
         if ((searchTerm == null) || (searchTerm === '')) return;
         const apiFullUrl = `https://api.tvmaze.com/search/shows?q=${searchTerm}`;
@@ -39,10 +41,12 @@ class ListOfShows extends Component {
     };
 
     render() {
-        return (  
-            this.state.shows.map((show) => (
-                <SingleShow {...show.show} key={show.show.id} updateShowId={this.props.updateShowId} /> //showEpisodes={this.fetchEpisodes}/>
-            ))
+        return (
+            <div className={styles.showsContainer}>
+                { this.state.shows.map((show) => (
+                    <SingleShow {...show.show} key={show.show.id} updateShowId={this.props.updateShowId} />
+                )) }
+            </div>
         );
     }
 }
