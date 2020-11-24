@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import SingleShow from "./components/singleShow";
-import SingleEpisode from "./components/singleEpisode";
+// import SingleShow from "./components/singleShow";
+// import SingleEpisode from "./components/singleEpisode";
 import PageLayout from './components/PageLayout'
 
 import "./App.css";
@@ -40,22 +40,22 @@ console.log('apiEpisodesUrl', apiEpisodesUrl);
   }
 
   render() {
-    let foundShowsOutput;
-    if (!this.state.hasSearchedBefore) {
-      foundShowsOutput = <div className="centerMe">Use the search field above to find TV shows</div> 
-    } else if (this.state.loading) {
-       return <div className="centerMe">finding TV shows ...</div>
-    } else if (this.state.showWhat === 'episodes') {
-      foundShowsOutput = this.state.episodes.map((episode) => (
-        <SingleEpisode {...episode} key={episode.id} />
-      ))
-    } else if (this.state.hasSearchedBefore && this.state.shows.length === 0) {
-      foundShowsOutput = <div className="centerMe">Could not find any shows matching "<strong>{this.state.searchTerm}</strong>"</div>
-    } else {
-      foundShowsOutput = this.state.shows.map((show) => (
-        <SingleShow {...show.show} key={show.show.id} showEpisodes={this.fetchEpisodes}/>
-      ))
-    }
+    // let foundShowsOutput;
+    // if (!this.state.hasSearchedBefore) {
+    //   foundShowsOutput = <div className="centerMe">Use the search field above to find TV shows</div> 
+    // } else if (this.state.loading) {
+    //    return <div className="centerMe">finding TV shows ...</div>
+    // } else if (this.state.showWhat === 'episodes') {
+    //   foundShowsOutput = this.state.episodes.map((episode) => (
+    //     <SingleEpisode {...episode} key={episode.id} />
+    //   ))
+    // } else if (this.state.hasSearchedBefore && this.state.shows.length === 0) {
+    //   foundShowsOutput = <div className="centerMe">Could not find any shows matching "<strong>{this.state.searchTerm}</strong>"</div>
+    // } else {
+    //   foundShowsOutput = this.state.shows.map((show) => (
+    //     <SingleShow {...show.show} key={show.show.id} showEpisodes={this.fetchEpisodes}/>
+    //   ))
+    // }
 
     return (
       <React.Fragment>

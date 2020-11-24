@@ -9,8 +9,8 @@ const SingleShow = (props) => {
     //     `<a href=${props.url} target="new"><button class="btn ${styles.btn_episodes}" type='button'>More about this show</button></a>` 
     // : '';
 
-    const episodesButtonClasses = `btn ${styles.btn_episodes}`;
-
+    // const episodesButtonClasses = `btn ${styles.btn_episodes}`;
+// console.log('singleShow props',props);
     return (
         <div className={styles.showBlock}>
             <img src={imageUrl} alt='show pic'/>
@@ -18,7 +18,9 @@ const SingleShow = (props) => {
                 <h1>{title}</h1>
                 <div dangerouslySetInnerHTML={{__html: summary}}></div>
                 {/* <div dangerouslySetInnerHTML={{__html: moreLink}}></div> */}
-                {/* <button className={episodesButtonClasses} onClick={() => props.showEpisodes(props.id)} type='button'>Show Episodes</button> */}
+                
+                <button  onClick={() => props.updateShowId(props.id)} type='button'>Show Episodes</button>
+                {/* className={episodesButtonClasses} */}
             </div>
         </div>
     );

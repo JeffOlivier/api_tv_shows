@@ -12,7 +12,7 @@ class SearchShowsForm extends Component {
     };
 
     handleValidateInput = e => {
-        const validChars = /^[a-zA-Z0-9]+$/i;
+        const validChars = /^[a-zA-Z0-9 ]+$/i;
         const searchInput = e.target.value;
     
         const isFormInputValid = validChars.test(searchInput);

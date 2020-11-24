@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './singleEpisode.module.css';
 
 const SingleEpisode = (props) => {
-    // const imageUrl = ((props.image != null) && (props.image.medium != null)) ? props.image.medium : './no-image.png';
+    const imageUrl = ((props.image != null) && (props.image.medium != null)) ? props.image.medium : './no-image.png';
     const title = (props.name != null) ? props.name : 'Untitled';
     // const season = (props.season != null) ? props.season : 0;
     const episode = (props.number != null) ? String(props.number).padStart(2, '0') : 0;
@@ -36,10 +36,9 @@ const SingleEpisode = (props) => {
 
         <div className={styles.episodeBlock}>
             <div className={episodeButtonClasses}>{episode}</div>
-            {/* <div className={styles.episodeInfo}> */}
-                <div className={styles.episodeTitle}>{title}</div>
-                <div className={styles.episodeData}>{runtime}{airdate}</div>
-            {/* </div> */}
+            <div className={styles.episodeTitle}>{title}</div>
+            <div className={styles.episodeData}>{runtime}{airdate}</div>
+            <img className={styles.episodeImage} src={imageUrl} alt='episode pic'/>
         </div>
     );
 }

@@ -13,21 +13,24 @@ class PageLayout extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        hasSearchedBefore: false,
-        searchTerm: 'walking',
+        searchTerm: '',
       };
     }
 
     updateSearchTerm = (searchTerm) => {
-        console.log("Event Handler Called -", searchTerm);
+        console.log("Event Handler 'updateSearchTerm' Called : ", searchTerm);
         // const counters = this.state.counters.filter((c) => c.id !== counterId);
-        this.setState({ searchTerm: searchTerm, hasSearchedBefore: true });
-
-        console.log('The new searchterm is: '+this.state.searchTerm);
-        console.log('hasSearchedBefore='+this.state.hasSearchedBefore);
+        this.setState({ searchTerm: searchTerm.trim() });
     };
 
     render() {
+        var searchResultsSection;
+        if (this.state.searchTerm === '') {
+            searchResultsSection = <div className="centerMe">Use the search field above to find TV shows</div>;
+        } else {
+            searchResultsSection =  <SearchResults searchTerm={this.state.searchTerm} />;
+        }
+
         return (
             <div className={styles.pageWrapper}>
                 {/* <Header heading={props.heading} /> */}
@@ -35,8 +38,7 @@ class PageLayout extends Component {
                 {/* <page /> */}
                 <div className={styles.contentWrapper}>
                     <SearchShowsForm updateSearchTerm={this.updateSearchTerm} />
-                    <SearchResults {...this.state} />
-                    {/* <div className={styles.searchResultsBlock}>The Results 1</div> */}
+                    { searchResultsSection }
                 </div>
                 <Footer />
             </div>
