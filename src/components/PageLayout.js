@@ -19,9 +19,18 @@ class PageLayout extends Component {
       this.updateSearchTerm = this.updateSearchTerm.bind(this);
     }
 
+    timerId = 0;
     updateSearchTerm = (searchTerm) => {
-        // const counters = this.state.counters.filter((c) => c.id !== counterId);
-        this.setState({ searchTerm: searchTerm.trim() });
+        if (searchTerm !== this.state.searchTerm) {
+            clearTimeout(this.timerId);
+            setTimeout(
+                function() {
+                    this.setState({ searchTerm: searchTerm.trim() });
+                }.bind(this), 1000); //1500 == 1.5 seconds
+
+            // const counters = this.state.counters.filter((c) => c.id !== counterId);
+            // this.setState({ searchTerm: searchTerm.trim() });
+        }
     };
 
     render() {
