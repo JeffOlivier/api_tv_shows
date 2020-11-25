@@ -8,38 +8,44 @@ class SearchShowsForm extends Component {
           isSearchFormValid: true,
         };
     
-        // this.updateSearchTerm = this.updateSearchTerm.bind(this);
+        this.handleValidateInput = this.handleValidateInput.bind(this);
     };
 
-    handleValidateInput = e => {
+
+
+    handleValidateInput = (searchInput) => {
         const validChars = /^[a-zA-Z0-9 ]+$/i;
-        const searchInput = e.target.value;
+        // const searchInput = e.target.value;
     
         const isFormInputValid = validChars.test(searchInput);
         this.setState({ isSearchFormValid: isFormInputValid });
     
-        document.getElementById('searchBtn').disabled = !(isFormInputValid);
+        // document.getElementById('searchBtn').disabled = !(isFormInputValid);
       
         if (isFormInputValid) {
           document.getElementById("findSearchTerm").classList.remove("textInputError");
-          document.getElementById("searchBtn").classList.remove("submitButtonDisable");
+          // document.getElementById("searchBtn").classList.remove("submitButtonDisable");
           document.getElementById("inputErrorMessage").style.display = "none";
+          
+          this.props.updateSearchTerm(searchInput);
         } else {
           document.getElementById("findSearchTerm").classList.add("textInputError");
-          document.getElementById("searchBtn").classList.add("submitButtonDisable");
+          // document.getElementById("searchBtn").classList.add("submitButtonDisable");
           document.getElementById("inputErrorMessage").style.display = "block";
         }
     }
 
     render() {
-        const searchButtonClasses = `btn ${styles.btn_search}`;
+        // const searchButtonClasses = `btn ${styles.btn_search}`;
 
         return (
             <div className={styles.searchContainer}>
                 <div id="inputErrorMessage" className={styles.inputErrorMessage}>Only letters and numbers are allowed in this search form</div>
                 <span className="fas fa-search fa-2x"></span>
-                <input id="findSearchTerm" className={styles.input_searchterm} type="text" onKeyUp={this.handleValidateInput} placeholder="Enter search term" required />
-                <button id="searchBtn" className={searchButtonClasses} type='button' onClick={() => this.props.updateSearchTerm(document.getElementById('findSearchTerm').value)}>SEARCH</button>
+                {/* <input id="findSearchTerm" className={styles.input_searchterm} type="text" onKeyUp={this.handleValidateInput} placeholder="Enter search term" required />
+                <button id="searchBtn" className={searchButtonClasses} type='button' onClick={() => this.props.updateSearchTerm(document.getElementById('findSearchTerm').value)}>SEARCH</button> */}
+                <input id="findSearchTerm" className={styles.input_searchterm} type="text" onChange={(event) => this.handleValidateInput(event.target.value)} value={this.state.searchTerm}/>
+                {/* <input id="findSearchTerm" className={styles.input_searchterm} type="text" onChange={(event) => this.props.updateSearchTerm(event.target.value)} value={this.state.searchTerm}/> */}
             </div>
         )
     }
