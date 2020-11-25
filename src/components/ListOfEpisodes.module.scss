@@ -1,0 +1,23 @@
+.episodesContainer {
+  background-color: white;
+
+  display: grid;
+  //   max-width: 600px;
+  grid-template-areas: "showInfo episodes";
+  grid-template-columns: 300px auto;
+  /* grid-template-rows: 50px 50px; */
+  grid-column-gap: 20px;
+  /* grid-auto-flow: column; */
+}
+.episodesBlock {
+  grid-area: episodes;
+
+  padding-bottom: 30px;
+}
+.seasonOptions {
+  padding: 10px;
+  font-size: 125% !important;
+  border-radius: 12px !important;
+  background-color: gainsboro;
+  border: 2px solid transparent;
+}
