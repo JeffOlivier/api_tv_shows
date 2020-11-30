@@ -1,5 +1,8 @@
+// Page Styling
+@import "./layouts/_pageStyling";
+
 .showBlock {
-  background-color: gainsboro;
+  background-color: $section-color;
   padding: 20px;
   margin-top: 30px;
   display: flex;

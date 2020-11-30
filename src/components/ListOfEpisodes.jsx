@@ -15,7 +15,6 @@ class ListOfEpisodes extends Component {
 
         this.fetchShowInfo = this.fetchShowInfo.bind(this);
         this.getNumberOfSeasons = this.getNumberOfSeasons.bind(this);
-        // this.seasonChooser = this.seasonChooser.bind(this);
         this.updateSeason = this.updateSeason.bind(this);
     }
 
@@ -31,21 +30,20 @@ class ListOfEpisodes extends Component {
             const apiCall1 = await fetch(apiFullUrl)
             const response1 = await apiCall1.json()
 
-// console.log('response1', response1);
+            // If a show's information is return, then try to get all of it's episodes
             if (response1.status !== 404) {
-// console.log('NOW, I am fetching episodes');
                 this.setState({ show: response1 });
                 apiFullUrl += '/episodes';
                 const apiCall2 = await fetch(apiFullUrl);
                 const response2 = await apiCall2.json();
 
+                // If episodes for the show are returned, then update the state of episodes
                 if (response2.status !== 404) {
                     this.setState({ episodes: response2 });
                     this.getNumberOfSeasons(response2);
                 }
             }
-
-        } else { console.log('FAILED TO FETCH A SHOW'); return; }
+        } 
     };
 
     getNumberOfSeasons(response2) {
@@ -63,23 +61,6 @@ class ListOfEpisodes extends Component {
         }
     }
 
-    // seasonChooser() {
-        // if (this.state.numberOfSeason <= 1) return;
-
-        // // onChange={(event) => this.updateSearchTerm(event.target.value)}
-        // let retVal = '<select id="seasonSelector" onchange="(event) => this.updateSeason(event.target.value)">';
-        // // let retVal = `<select id="seasonSelector" onchange=${this.updateSeason}>`;
-
-        // let selected = '';
-        // for (let i=1; i<= this.state.numberOfSeason; i++) {
-        //     selected = (i === this.state.season) ? 'selected' : '';
-        //     retVal += `<option value=${i} ${selected}>Season ${i}</option>`;
-        // }
-        // retVal += '</select>';
-        
-        // return retVal;
-    // }
-
     render() {
         let seasonOptions = [];
         for (let i=1; i<= this.state.numberOfSeason; i++) {
@@ -90,12 +71,9 @@ class ListOfEpisodes extends Component {
             <div className={styles.episodesContainer}>
                 <CurrentShow {...this.state.show} />
                 <div className={styles.episodesBlock}>
-                    {/* <div dangerouslySetInnerHTML={{__html: this.seasonChooser()}}></div> */}
-                    {/* {this.seasonChooser()} */}
-                    
-<select className={styles.seasonOptions} value={this.state.season} onChange={this.updateSeason}>
-{seasonOptions}
-</select>
+                    <select className={styles.seasonOptions} value={this.state.season} onChange={this.updateSeason}>
+                        {seasonOptions}
+                    </select>
 
                     {this.state.episodes.map(episode => {
                         return (parseInt(episode.season) === parseInt(this.state.season)) ?

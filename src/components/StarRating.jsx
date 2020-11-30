@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './StarRating.module.scss';
-// import "./StarRating.module.scss";
 
 const StarRating = (props) => {
     const rating = (props.rating) ? props.rating : 100;

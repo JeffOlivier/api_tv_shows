@@ -1,0 +1,18 @@
+// Page Styling
+@import "./_pageStyling";
+
+.pageWrapper {
+  height: 100%;
+
+  .contentWrapper {
+    height: 100%;
+    margin: 20px 30px;
+    background-color: $background-color;
+  }
+  .startText {
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+    padding-bottom: 30px;
+  }
+}

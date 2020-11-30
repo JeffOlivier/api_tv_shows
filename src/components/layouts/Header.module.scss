@@ -1,0 +1,17 @@
+// Page Styling
+@import "./_pageStyling";
+
+header {
+  background-color: $header-color;
+  width: 100%;
+  margin: 0px;
+
+  .header_text {
+    color: $header-text-color;
+    font-weight: bold;
+    padding: 10px 10px 10px 20px;
+    text-align: left;
+    font-family: sans-serif;
+    font-size: 150%;
+  }
+}
