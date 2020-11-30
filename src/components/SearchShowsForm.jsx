@@ -17,35 +17,29 @@ class SearchShowsForm extends Component {
     
         const isFormInputValid = validChars.test(searchInput);
         this.setState({ isSearchFormValid: isFormInputValid });
-    
-        // document.getElementById('searchBtn').disabled = !(isFormInputValid);
       
         if (isFormInputValid) {
           document.getElementById("findSearchTerm").classList.remove("textInputError");
-          // document.getElementById("searchBtn").classList.remove("submitButtonDisable");
           document.getElementById("inputErrorMessage").style.display = "none";
-          
+
+          // The input is valid, so update the state of searchTerm in PageLayout.js
           this.props.updateSearchTerm(searchInput);
         } else {
           document.getElementById("findSearchTerm").classList.add("textInputError");
-          // document.getElementById("searchBtn").classList.add("submitButtonDisable");
           document.getElementById("inputErrorMessage").style.display = "block";
         }
     }
-
+    
     render() {
-        // const searchButtonClasses = `btn ${styles.btn_search}`;
+      const searchIconClasses = `fas fa-search fa-2x ${styles.btn_episode} ${styles.searchIcon}`;
 
-        return (
-            <div className={styles.searchContainer}>
-                <div id="inputErrorMessage" className={styles.inputErrorMessage}>Only letters and numbers are allowed in this search form</div>
-                <span className="fas fa-search fa-2x"></span>
-                {/* <input id="findSearchTerm" className={styles.input_searchterm} type="text" onKeyUp={this.handleValidateInput} placeholder="Enter search term" required />
-                <button id="searchBtn" className={searchButtonClasses} type='button' onClick={() => this.props.updateSearchTerm(document.getElementById('findSearchTerm').value)}>SEARCH</button> */}
-                <input id="findSearchTerm" className={styles.input_searchterm} type="text" onChange={(event) => this.handleValidateInput(event.target.value)} value={this.state.searchTerm} placeholder="Enter search term" />
-                {/* <input id="findSearchTerm" className={styles.input_searchterm} type="text" onChange={(event) => this.props.updateSearchTerm(event.target.value)} value={this.state.searchTerm}/> */}
-            </div>
-        )
+      return (
+          <div className={styles.searchContainer}>
+              <div id="inputErrorMessage" className={styles.inputErrorMessage}>Only letters and numbers are allowed in this search form</div>
+              <span className={searchIconClasses}></span>
+              <input id="findSearchTerm" className={styles.input_searchterm} type="text" onChange={(event) => this.handleValidateInput(event.target.value)} value={this.state.searchTerm} placeholder="Enter search term" />
+          </div>
+      )
     }
 }
 

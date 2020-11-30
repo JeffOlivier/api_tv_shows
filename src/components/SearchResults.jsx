@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ListOfShows from './ListOfShows';
 import ListOfEpisodes from './ListOfEpisodes';
-
 import styles from './SearchResults.module.scss';
 
 class SearchResults extends Component { 
@@ -23,22 +22,10 @@ class SearchResults extends Component {
         this.state.showShows = true;
       }
     }
- 
-    // componentDidMount() {
-    //     if (this.props.searchTerm !== '') {
-    //         this.setState({ showShows: true });
-    //     }
-    // }
 
     componentDidUpdate(previousProps, previouState) {
         if (previousProps.searchTerm !== this.props.searchTerm) {
             this.setState({ showShows: true, showEpisodes: false });
-        // } else if ((this.state.showId !== 0) && (previouState.showId !== this.state.showId)) {
-        //     this.setState({ showShows: false, showEpisodes: true });
-        //     console.log('showId changed from '+previouState.showId+' to '+this.state.showId);
-        // } else {
-        //     this.setState({ showShows: false, showEpisodes: true });
-        //     console.log('clearing shit out');
         }
     }
 
@@ -65,8 +52,6 @@ class SearchResults extends Component {
                         return <ListOfEpisodes showId={this.state.showId} />
                     }
                 })()}
-{/* {inputList.length !== 1 && <button className="mr10">Remove</button>}
-{inputList.length - 1 === i && <button>Add</button>} */}
             </div>
         );
     }

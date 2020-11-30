@@ -1,3 +1,6 @@
+// Page Styling
+@import "./layouts/_pageStyling";
+
 .searchContainer {
   text-align: center;
   display: flex;
@@ -11,9 +14,20 @@
     padding: 15px 15px 15px 60px !important;
     font-size: 125% !important;
     border-radius: 12px !important;
-    background-color: gainsboro;
+    background-color: $input-color;
     border: 2px solid transparent;
   }
+
+  .searchIcon {
+    position: relative;
+    margin-right: -45px;
+    z-index: 1000;
+  }
+
+  .textInputError {
+    border-color: $error-color !important;
+  }
+
   .inputErrorMessage {
     display: none;
     position: absolute;
@@ -21,10 +35,6 @@
     margin-top: 200;
     font-size: 75%;
     font-weight: bold;
-    color: red;
-  }
-  .btn_search {
-    padding: 15px 10px;
-    margin-left: 10px;
+    color: $error-color;
   }
 }

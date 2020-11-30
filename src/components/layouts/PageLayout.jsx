@@ -1,11 +1,10 @@
-// import React from 'react'
 import React, { Component } from 'react'
 import Header from './Header'
-import SearchShowsForm from './SearchShowsForm'
-import SearchResults from './SearchResults'
+import SearchShowsForm from '../SearchShowsForm'
+import SearchResults from '../SearchResults'
 import Footer from './Footer'
 
-import "./PageLayoutGenericStyles.scss"; /* TODO: create mixins and add it to SCSS modules */
+import "./PageLayoutGenericStyles.scss";
 import styles from './PageLayout.module.scss'
 
 // const PageLayout = (props) => {

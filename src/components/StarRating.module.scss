@@ -1,3 +1,6 @@
+// Page Styling
+@import "./layouts/_pageStyling";
+
 .starsOuter {
   display: inline-block;
   position: relative;
@@ -7,7 +10,7 @@
 
 .starsOuter::before {
   /* EMPTY */
-  color: #000000;
+  color: $star-empty-color;
   font-weight: 300;
   content: "\f005 \f005 \f005 \f005 \f005";
 }
@@ -25,5 +28,5 @@
   /* SOLID */
   font-weight: 900;
   content: "\f005 \f005 \f005 \f005 \f005";
-  color: #f8ce0b;
+  color: $star-solid-color;
 }

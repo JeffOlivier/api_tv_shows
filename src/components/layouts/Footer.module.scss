@@ -1,14 +1,15 @@
+// Page Styling
+@import "./_pageStyling";
+
 footer {
-  background-color: gainsboro;
-  color: black;
+  background-color: $footer-color;
+  color: $footer-text-color;
   min-height: 20px;
   padding: 20px;
 
   position: absolute;
   bottom: 0;
   width: 100%;
-  // height: 2.5rem;
-  background-color: red;
 
   a {
     text-decoration: none;

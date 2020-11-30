@@ -1,0 +1,28 @@
+// Page Styling
+@import "./_pageStyling";
+
+input:focus,
+button:focus {
+  outline: none;
+}
+
+.btn {
+  background-color: $button-color;
+  color: $button-text-color;
+  font-weight: bold;
+  font-size: 100%;
+  border-radius: 12px;
+
+  /* Set a hover effect for the button */
+  :hover {
+    opacity: 0.8;
+  }
+}
+
+.centerMe {
+  text-align: center;
+}
+
+.hideMe {
+  display: none;
+}

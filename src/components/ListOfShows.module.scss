@@ -1,3 +1,6 @@
+// Page Styling
+@import "./layouts/_pageStyling";
+
 .showsContainer {
-  background-color: white;
+  background-color: $background-color;
 }
