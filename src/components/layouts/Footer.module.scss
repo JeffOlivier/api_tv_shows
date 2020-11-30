@@ -7,11 +7,12 @@ footer {
   min-height: 20px;
   padding: 20px;
 
-  position: absolute;
+  // position: absolute;
   bottom: 0;
   width: 100%;
 
   a {
-    text-decoration: none;
+    // text-decoration: none;
+    color: $footer-link-text-color;
   }
 }

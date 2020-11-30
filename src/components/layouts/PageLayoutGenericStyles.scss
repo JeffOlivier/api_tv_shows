@@ -12,9 +12,14 @@ button:focus {
   font-weight: bold;
   font-size: 100%;
   border-radius: 12px;
+  cursor: pointer;
+
+  border-width: 1px;
+  border-color: gray;
+  background-image: linear-gradient($gradient-top, $button-color);
 
   /* Set a hover effect for the button */
-  :hover {
+  &:hover {
     opacity: 0.8;
   }
 }
