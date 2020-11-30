@@ -22,14 +22,12 @@ class PageLayout extends Component {
     timerId = 0;
     updateSearchTerm = (searchTerm) => {
         if (searchTerm !== this.state.searchTerm) {
+            // Wait 1.5 seconds before updating the state of searchTerm, if this
+            // function is called before the timer expires, restart the clock
             clearTimeout(this.timerId);
-            setTimeout(
-                function() {
+            this.timerId = setTimeout(() =>{
                     this.setState({ searchTerm: searchTerm.trim() });
-                }.bind(this), 1000); //1500 == 1.5 seconds
-
-            // const counters = this.state.counters.filter((c) => c.id !== counterId);
-            // this.setState({ searchTerm: searchTerm.trim() });
+                }, 1000); //1500 == 1.5 seconds
         }
     };
 
