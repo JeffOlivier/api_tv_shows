@@ -31,12 +31,10 @@ class SearchShowsForm extends Component {
     }
     
     render() {
-      const searchIconClasses = `fas fa-search fa-2x ${styles.btn_episode} ${styles.searchIcon}`;
-
       return (
           <div className={styles.searchContainer}>
               <div id="inputErrorMessage" className={styles.inputErrorMessage}>Only letters and numbers are allowed in this search form</div>
-              <span className={searchIconClasses}></span>
+              <span className={`fas fa-search fa-2x ${styles.btn_episode} ${styles.searchIcon}`}></span>
               <input id="findSearchTerm" className={styles.input_searchterm} type="text" onChange={(event) => this.handleValidateInput(event.target.value)} value={this.state.searchTerm} placeholder="Enter search term" />
           </div>
       )

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CurrentShow from './CurrentShow';
 import SingleEpisode from './SingleEpisode';
+import Seasons from './Seasons';
 import styles from './ListOfEpisodes.module.scss';
 
 class ListOfEpisodes extends Component {
@@ -10,7 +11,7 @@ class ListOfEpisodes extends Component {
           show: {},
           episodes: [],
           season: 1,
-          numberOfSeason: 1
+          numberOfSeasons: 1
         };
 
         this.fetchShowInfo = this.fetchShowInfo.bind(this);
@@ -51,29 +52,22 @@ class ListOfEpisodes extends Component {
         response2.map((episode) => (
             seasonNumber = (episode.season > seasonNumber) ? episode.season : seasonNumber
         ))
-        this.setState({ numberOfSeason: seasonNumber });
+        this.setState({ numberOfSeasons: seasonNumber });
     }
 
-    updateSeason(event) {
-        const newSeason = event.target.value;
+    updateSeason(newSeason) {
         if (newSeason !== this.props.season) {
             this.setState({ season: newSeason });
         }
     }
 
     render() {
-        let seasonOptions = [];
-        for (let i=1; i<= this.state.numberOfSeason; i++) {
-            seasonOptions.push(<option value={i} key={i}>Season {i}</option>);
-        }
-
         return (
             <div className={styles.episodesContainer}>
                 <CurrentShow {...this.state.show} />
+
                 <div className={styles.episodesBlock}>
-                    <select className={styles.seasonOptions} value={this.state.season} onChange={this.updateSeason}>
-                        {seasonOptions}
-                    </select>
+                    <Seasons totalSeasons={this.state.numberOfSeasons} chosenSeason={this.state.season} updateSeason={this.updateSeason} />
 
                     {this.state.episodes.map(episode => {
                         return (parseInt(episode.season) === parseInt(this.state.season)) ?
