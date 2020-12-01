@@ -30,3 +30,7 @@ button:focus {
 .hideMe {
   display: none;
 }
+
+.textInputError {
+  border-color: $error-color !important;
+}
