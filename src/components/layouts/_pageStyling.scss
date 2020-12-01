@@ -1,7 +1,7 @@
 $primary-color: darkblue;
 $secondary-color: gainsboro;
 $tertiary-color: white;
-$quaternary-color: white;
+$quaternary-color: darkgray;
 
 $header-color: $primary-color;
 $header-text-color: white;
@@ -12,12 +12,16 @@ $footer-link-text-color: cornflowerblue;
 
 $background-color: $tertiary-color;
 $section-color: $secondary-color;
-$section-border-color: $primary-color;
+$section-border-color: $quaternary-color;
 $star-empty-color: lightgray;
 $star-solid-color: #f8ce0b;
 $error-color: red;
 $input-color: $secondary-color;
 $button-color: $primary-color;
 $button-text-color: white;
+$button-active-color: $primary-color;
+$button-inactive-color: $secondary-color;
 
 $gradient-top: silver; //#c0c0c0
+// $shadow-color: #737373;
+$shadow-color: rgba(115, 115, 115, 0.5);

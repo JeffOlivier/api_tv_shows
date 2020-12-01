@@ -11,7 +11,7 @@
 .starsOuter::before {
   /* EMPTY */
   color: $star-empty-color;
-  font-weight: 300;
+  font-weight: 900; /* 300 : hollow star */
   content: "\f005 \f005 \f005 \f005 \f005";
 }
 
