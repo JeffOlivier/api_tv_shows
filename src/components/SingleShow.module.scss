@@ -17,4 +17,26 @@
     padding: 10px 10px;
     background-image: linear-gradient($gradient-top, $button-color);
   }
+
+  @media only screen and (max-width: $break1) {
+    img {
+      object-fit: none;
+      height: 295px;
+      align-items: flex-start;
+    }
+    .showInfo {
+      padding-left: 20px;
+    }
+  }
+
+  @media only screen and (max-width: $break3) {
+    &:first-of-type {
+      margin-top: 10px;
+    }
+    margin-top: 15px;
+
+    h1 {
+      font-size: 1.5em;
+    }
+  }
 }

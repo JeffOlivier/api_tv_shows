@@ -5,7 +5,8 @@
   display: grid;
   max-width: 600px;
   grid-template-areas: "epNumber epTitle epImage" "epNumber epData epImage";
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: min-content 1fr auto;
+  grid-template-rows: 50% 50%;
   grid-column-gap: 20px;
   background-color: $section-color;
   margin-top: 30px;
@@ -13,7 +14,7 @@
   border-radius: 10px;
   box-shadow: 0px 0px 5px 1px $shadow-color;
 
-  .episodeNumber {
+  .numberWrapper {
     grid-area: epNumber;
     margin: 20px 0px 20px 20px;
     padding: 15px 15px;
@@ -22,24 +23,57 @@
     border-radius: 6px;
     font-weight: bold;
   }
-
-  .episodeTitle {
+  .title {
     grid-area: epTitle;
     align-self: center;
-    margin-top: 20px;
+    margin-top: 15px;
     font-weight: bold;
   }
-
-  .episodeData {
-    grid-area: epData;
-    align-self: center;
-    margin-bottom: 20px;
+  .runtime {
+    font-weight: normal;
   }
-
-  .episodeImage {
+  .meta {
+    grid-area: epData;
+    margin-top: 5px;
+  }
+  .image {
     grid-area: epImage;
     height: 88px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+  }
+
+  @media only screen and (max-width: $break1) {
+    grid-column-gap: 10px;
+    .numberWrapper {
+      width: 60px;
+      padding: 0px;
+      margin: 0px;
+      border-radius: 0px;
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+      display: grid;
+      justify-content: center;
+      align-content: center;
+    }
+    .title {
+      margin-top: 10px;
+    }
+    .meta {
+      margin-bottom: 15px;
+    }
+  }
+  @media only screen and (max-width: $break3) {
+    grid-column-gap: 10px;
+    max-width: unset;
+    margin-top: 15px;
+    .title {
+      margin-top: 0px;
+    }
+    .meta {
+      margin-bottom: 10px;
+    }
+  }
+  @media only screen and (max-width: $break4) {
   }
 }

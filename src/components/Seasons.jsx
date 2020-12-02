@@ -9,7 +9,7 @@ const Seasons = (props) => {
 
     return (
         <div className={styles.seasonsWrapper}>
-            <div className={styles.title}>Seasons:</div>  {seasonOptions2}
+            <div className={styles.title}>Seasons:</div> <div className={styles.seasonsBlock}>{seasonOptions2}</div>
         </div>
     );
 }

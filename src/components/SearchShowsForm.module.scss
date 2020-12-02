@@ -34,10 +34,6 @@
     z-index: 1000;
   }
 
-  .textInputError {
-    border-color: $error-color !important;
-  }
-
   .inputErrorMessage {
     display: none;
     position: absolute;
@@ -46,5 +42,22 @@
     font-size: 75%;
     font-weight: bold;
     color: $error-color;
+  }
+
+  @media only screen and (max-width: $break1) {
+    .input_searchterm {
+      width: 55% !important;
+    }
+  }
+
+  @media only screen and (max-width: $break3) {
+    padding: 20px 10px 10px 10px;
+
+    .inputErrorMessage {
+      top: 60px;
+    }
+    .input_searchterm {
+      width: 75% !important;
+    }
   }
 }

@@ -16,4 +16,12 @@
     font-weight: bold;
     padding-bottom: 30px;
   }
+
+  @media only screen and (max-width: $break3) {
+    .contentWrapper {
+      margin: 0px;
+      padding-bottom: 15px;
+      background-color: white;
+    }
+  }
 }

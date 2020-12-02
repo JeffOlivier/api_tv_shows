@@ -11,9 +11,11 @@ const CurrentShow = (props) => {
     return (
         <div className={styles.showBlock}>
             <img src={imageUrl} alt='show pic'/>
-            <h2>{title}</h2>
-            <StarRating rating={rating} />
-            <div dangerouslySetInnerHTML={{__html: summary}}></div>
+            <div className={styles.showInfoBlock}>
+                <h2>{title}</h2>
+                <StarRating rating={rating} />
+                <div dangerouslySetInnerHTML={{__html: summary}}></div>
+            </div>
         </div>
     );
 }
