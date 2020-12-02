@@ -4,15 +4,15 @@
 footer {
   background-color: $footer-color;
   color: $footer-text-color;
-  min-height: 20px;
+  // min-height: 20px;
   padding: 20px;
-
-  // position: absolute;
-  bottom: 0;
-  width: 100%;
 
   a {
     // text-decoration: none;
     color: $footer-link-text-color;
+  }
+
+  @media only screen and (max-width: $break3) {
+    padding: 10px;
   }
 }
