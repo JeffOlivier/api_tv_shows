@@ -28,6 +28,9 @@
     align-self: center;
     margin-top: 15px;
     font-weight: bold;
+    .seasonEpisode {
+      display: none;
+    }
   }
   .runtime {
     font-weight: normal;
@@ -74,6 +77,15 @@
       margin-bottom: 10px;
     }
   }
-  @media only screen and (max-width: $break4) {
+  @media only screen and (max-width: $break5) {
+    .numberWrapper {
+      display: none;
+    }
+    .title {
+      .seasonEpisode {
+        display: unset;
+        color: cornflowerblue; /*$primary-color;*/
+      }
+    }
   }
 }
