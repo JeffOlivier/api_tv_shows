@@ -1,17 +1,55 @@
 // Page Styling
 @import "./layouts/_pageStyling";
 
+$epBlockBorderRadius: 10px;
+$epSummaryTransitionSpeed: 0.7s;
+
+.episodeWrapper {
+  position: relative;
+}
+
+.summary {
+  padding: 5px 20px 10px 20px;
+
+  p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+}
+
+.summaryWrapper {
+  background-color: $section-color;
+  border: 1px solid $section-border-color;
+  border-top: none;
+  margin: -1px auto 0px auto;
+  z-index: 1000;
+  border-bottom-right-radius: $epBlockBorderRadius;
+  border-bottom-left-radius: $epBlockBorderRadius;
+  box-shadow: 0px 7px 7px 2px $shadow-color;
+
+  position: absolute;
+  overflow: hidden;
+  width: 80%;
+  left: 0;
+  right: 0;
+
+  visibility: hidden;
+  opacity: 0;
+  height: 0px;
+  transition: all $epSummaryTransitionSpeed linear;
+}
+
 .episodeBlock {
   display: grid;
   max-width: 600px;
-  grid-template-areas: "epNumber epTitle epImage" "epNumber epData epImage";
-  grid-template-columns: min-content 1fr auto;
+  grid-template-areas: "epNumber epTitle epSummary epImage" "epNumber epData epSummary epImage";
+  grid-template-columns: min-content 1fr auto auto;
   grid-template-rows: 50% 50%;
   grid-column-gap: 20px;
   background-color: $section-color;
   margin-top: 30px;
   border: 1px solid $section-border-color;
-  border-radius: 10px;
+  border-radius: $epBlockBorderRadius;
   box-shadow: 0px 0px 5px 1px $shadow-color;
 
   .numberWrapper {
@@ -39,11 +77,16 @@
     grid-area: epData;
     margin-top: 5px;
   }
+  .arrow {
+    grid-area: epSummary;
+    margin: auto 10px auto auto;
+    transition: transform $epSummaryTransitionSpeed;
+  }
   .image {
     grid-area: epImage;
     height: 88px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-top-right-radius: $epBlockBorderRadius;
+    border-bottom-right-radius: $epBlockBorderRadius;
   }
 
   @media only screen and (max-width: $break1) {
@@ -53,8 +96,8 @@
       padding: 0px;
       margin: 0px;
       border-radius: 0px;
-      border-top-left-radius: 6px;
-      border-bottom-left-radius: 6px;
+      border-top-left-radius: $epBlockBorderRadius;
+      border-bottom-left-radius: $epBlockBorderRadius;
       display: grid;
       justify-content: center;
       align-content: center;
@@ -88,4 +131,13 @@
       }
     }
   }
+}
+
+.episodeBlock:hover + .summaryWrapper {
+  visibility: visible;
+  opacity: 1;
+  height: fit-content;
+}
+.episodeBlock:hover .arrow {
+  transform: rotate(180deg);
 }
