@@ -1,6 +1,6 @@
 # TV Show Search
 
-![Page Image](./public/images/tvshows.png)
+![Page Image](./public/images/television.png)
 
 ## Purpose
 
