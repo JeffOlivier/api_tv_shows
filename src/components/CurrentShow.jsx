@@ -3,7 +3,7 @@ import StarRating from './StarRating';
 import styles from './CurrentShow.module.scss';
 
 const CurrentShow = (props) => {
-    const imageUrl = ((props.image != null) && (props.image.medium != null)) ? props.image.medium : './no-image.png';
+    const imageUrl = ((props.image != null) && (props.image.medium != null)) ? props.image.medium : './images/no-image.png';
     const title = (props.name != null) ? props.name : 'Untitled';
     const summary = (props.summary != null) ? props.summary : '';
     const rating = (props.rating && props.rating.average != null) ? props.rating.average : 0;
