@@ -14,11 +14,11 @@ const SingleEpisode = (props) => {
 
     const summary = (props.summary != null) ? props.summary : null;
 
-    let fubar = '';
-    if (summary) {
-        fubar = `<div className={styles.arrow}><i class="fas fa-chevron-down"></i></div>
-        <div className={styles.summary}>{summary}</div>`
-    }
+    // let fubar = '';
+    // if (summary) {
+    //     fubar = `<div className={styles.arrow}><i class="fas fa-chevron-down"></i></div>
+    //     <div className={styles.summary}>{summary}</div>`
+    // }
 
     return (
         <div className={styles.episodeWrapper}>
