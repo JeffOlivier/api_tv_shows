@@ -6,138 +6,148 @@ $epSummaryTransitionSpeed: 0.7s;
 
 .episodeWrapper {
   position: relative;
-}
-
-.summary {
-  padding: 5px 20px 10px 20px;
-
-  p {
-    margin-top: 0px;
-    margin-bottom: 0px;
-  }
-}
-
-.summaryWrapper {
-  background-color: $section-color;
-  border: 1px solid $section-border-color;
-  border-top: none;
-  margin: -1px auto 0px auto;
-  z-index: 1000;
-  border-bottom-right-radius: $epBlockBorderRadius;
-  border-bottom-left-radius: $epBlockBorderRadius;
-  box-shadow: 0px 7px 7px 2px $shadow-color;
-
-  position: absolute;
-  overflow: hidden;
-  width: 80%;
-  left: 0;
-  right: 0;
-
-  visibility: hidden;
-  opacity: 0;
-  height: 0px;
-  transition: all $epSummaryTransitionSpeed linear;
-}
-
-.episodeBlock {
-  display: grid;
   max-width: 600px;
-  grid-template-areas: "epNumber epTitle epSummary epImage" "epNumber epData epSummary epImage";
-  grid-template-columns: min-content 1fr auto auto;
-  grid-template-rows: 50% 50%;
-  grid-column-gap: 20px;
-  background-color: $section-color;
-  margin-top: 30px;
-  border: 1px solid $section-border-color;
-  border-radius: $epBlockBorderRadius;
-  box-shadow: 0px 0px 5px 1px $shadow-color;
 
-  .numberWrapper {
-    grid-area: epNumber;
-    margin: 20px 0px 20px 20px;
-    padding: 15px 15px;
-    background-color: $button-color;
-    color: $button-text-color;
-    border-radius: 6px;
-    font-weight: bold;
-  }
-  .title {
-    grid-area: epTitle;
-    align-self: center;
-    margin-top: 15px;
-    font-weight: bold;
-    .seasonEpisode {
-      display: none;
-    }
-  }
-  .runtime {
-    font-weight: normal;
-  }
-  .meta {
-    grid-area: epData;
-    margin-top: 5px;
-  }
-  .arrow {
-    grid-area: epSummary;
-    margin: auto 10px auto auto;
-    transition: transform $epSummaryTransitionSpeed;
-  }
-  .image {
-    grid-area: epImage;
-    height: 88px;
-    border-top-right-radius: $epBlockBorderRadius;
+  .summaryWrapper {
+    background-color: $section-color;
+    border: 1px solid $section-border-color;
+    border-top: none;
+    margin: -1px auto 0px auto;
+    z-index: 1000;
     border-bottom-right-radius: $epBlockBorderRadius;
-  }
+    border-bottom-left-radius: $epBlockBorderRadius;
+    box-shadow: 0px 7px 7px 2px $shadow-color;
 
-  @media only screen and (max-width: $break1) {
-    grid-column-gap: 10px;
-    .numberWrapper {
-      width: 60px;
-      padding: 0px;
-      margin: 0px;
-      border-radius: 0px;
-      border-top-left-radius: $epBlockBorderRadius;
-      border-bottom-left-radius: $epBlockBorderRadius;
-      display: grid;
-      justify-content: center;
-      align-content: center;
-    }
-    .title {
-      margin-top: 10px;
-    }
-    .meta {
-      margin-bottom: 15px;
-    }
-  }
-  @media only screen and (max-width: $break3) {
-    grid-column-gap: 10px;
-    max-width: unset;
-    margin-top: 15px;
-    .title {
-      margin-top: 0px;
-    }
-    .meta {
-      margin-bottom: 10px;
-    }
-  }
-  @media only screen and (max-width: $break5) {
-    .numberWrapper {
-      display: none;
-    }
-    .title {
-      .seasonEpisode {
-        display: unset;
-        color: cornflowerblue; /*$primary-color;*/
+    position: absolute;
+    overflow: hidden;
+    width: 80%;
+    left: 0;
+    right: 0;
+
+    visibility: hidden;
+    opacity: 0;
+    height: 0px;
+    transition: all $epSummaryTransitionSpeed linear;
+
+    .summary {
+      padding: 5px 20px 10px 20px;
+    
+      p {
+        margin-top: 0px;
+        margin-bottom: 0px;
       }
     }
   }
-}
 
-.episodeBlock:hover + .summaryWrapper {
-  visibility: visible;
-  opacity: 1;
-  height: fit-content;
-}
-.episodeBlock:hover .arrow {
-  transform: rotate(180deg);
+  .episodeBlock {
+    display: grid;
+    max-width: 600px;
+    grid-template-areas: "epNumber epTitle epSummary epImage" "epNumber epData epSummary epImage";
+    grid-template-columns: min-content 1fr auto auto;
+    grid-template-rows: 50% 50%;
+    grid-column-gap: 20px;
+    background-color: $section-color;
+    margin-top: 30px;
+    border: 1px solid $section-border-color;
+    border-radius: $epBlockBorderRadius;
+    box-shadow: 0px 0px 5px 1px $shadow-color;
+
+    .numberWrapper {
+      grid-area: epNumber;
+      margin: 20px 0px 20px 20px;
+      padding: 15px 15px;
+      background-color: $button-color;
+      color: $button-text-color;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+    .title {
+      grid-area: epTitle;
+      align-self: center;
+      margin-top: 15px;
+      font-weight: bold;
+      .seasonEpisode {
+        display: none;
+      }
+    }
+    .runtime {
+      font-weight: normal;
+    }
+    .meta {
+      grid-area: epData;
+      margin-top: 5px;
+    }
+    .arrow {
+      grid-area: epSummary;
+      margin: auto 10px auto auto;
+      transition: transform $epSummaryTransitionSpeed;
+    }
+    .image {
+      grid-area: epImage;
+      height: 88px;
+      border-top-right-radius: $epBlockBorderRadius;
+      border-bottom-right-radius: $epBlockBorderRadius;
+    }
+
+    @media only screen and (max-width: $break1) {
+      grid-column-gap: 10px;
+      .numberWrapper {
+        width: 60px;
+        padding: 0px;
+        margin: 0px;
+        border-radius: 0px;
+        border-top-left-radius: $epBlockBorderRadius;
+        border-bottom-left-radius: $epBlockBorderRadius;
+        display: grid;
+        justify-content: center;
+        align-content: center;
+      }
+      .title {
+        margin-top: 10px;
+      }
+      .meta {
+        margin-bottom: 15px;
+      }
+    }
+    @media only screen and (max-width: $break3) {
+      grid-column-gap: 10px;
+      max-width: unset;
+      margin-top: 15px;
+      .title {
+        margin-top: 0px;
+      }
+      .meta {
+        margin-bottom: 10px;
+      }
+    }
+    @media only screen and (max-width: $break5) {
+      .numberWrapper {
+        display: none;
+      }
+      .title {
+        .seasonEpisode {
+          display: unset;
+          color: cornflowerblue; /*$primary-color;*/
+        }
+      }
+    }
+  }
+
+  .episodeBlock:hover + .summaryWrapper {
+    visibility: visible;
+    opacity: 1;
+    height: fit-content;
+  }
+  .episodeBlock:hover .arrow {
+    transform: rotate(180deg);
+  }
+
+  @media only screen and (max-width: $break5) {
+    .summaryWrapper {
+      display: none;
+    }
+    .arrow {
+      display: none;
+    }
+  }
 }
