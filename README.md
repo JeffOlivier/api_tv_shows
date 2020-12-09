@@ -19,7 +19,7 @@ This is an app that I created to demonstrate the use of:
 - ~~React Hooks~~
 - ~~Helmet to inject meta into the &lt;head&gt;~~
 
-[Working Demo]http://tvshows.jeffolivier.codes
+[Working Demo](http://tvshows.jeffolivier.codes)
 
 ## How to use this app
 
