@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="./images/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -14,8 +14,18 @@
     <link rel="stylesheet" href="./index.css">
   </head>
   <body>
-    <div class="header1">
-      <div class="header1Name"><a href='http://www.jeffolivier.codes' title='HOME'>Jeff Olivier Codes</a></div>
+    <div class="header">
+      <style>
+          .header { background-image: url("./images/header.jpeg");
+              background-position: center 15%; background-repeat: no-repeat; background-size: cover;
+              padding: 10px 10px 10px 20px;
+              color: white; font-weight: bold; text-align: left; font-family: sans-serif; font-size: 150%;
+          }
+          .header a { color: white; text-decoration: none; }
+          @media only screen and (max-width: 800px) { .header { background-position: right; } }
+          @media only screen and (max-width: 700px) { .header { padding: 10px; } }
+      </style>
+      <div class="name"><a href='http://www.jeffolivier.codes' title='HOME'>&lt;Jeff Olivier Codes /&gt;</a></div>
     </div>
 
     <noscript>You need to enable JavaScript to run this app.</noscript>
