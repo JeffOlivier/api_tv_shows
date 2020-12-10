@@ -22,14 +22,16 @@ const SingleEpisode = (props) => {
 
     return (
         <div className={styles.episodeWrapper}>
-        <div className={styles.episodeBlock}>
-            <div className={styles.numberWrapper}><div>{episode}</div></div>
-            <div className={styles.title}><span className={styles.seasonEpisode}>S{season}:E{episodeSm} </span>{title} <span className={styles.runtime}>{runtime}</span></div>
-            <div className={styles.meta}>{airdate}</div>
-            <div className={styles.arrow}><i className="fas fa-chevron-down"></i></div>
-            {episodeImage}
-        </div>
-        <div className={styles.summaryWrapper}><div className={styles.summary} dangerouslySetInnerHTML={{__html: summary}}></div></div>
+            <div className={styles.episodeBlock}>
+                <div className={styles.numberWrapper}><div>{episode}</div></div>
+                <div className={styles.title}><span className={styles.seasonEpisode}>S{season}:E{episodeSm} </span>{title} <span className={styles.runtime}>{runtime}</span></div>
+                <div className={styles.meta}>{airdate}</div>
+                <div className={styles.arrow}><i className="fas fa-chevron-down"></i></div>
+                {episodeImage}
+            </div>
+            <div className={styles.summaryWrapper}>
+                <div className={styles.summary} dangerouslySetInnerHTML={{__html: summary}}></div>
+            </div>
         </div>
     );
 }
