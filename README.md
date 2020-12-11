@@ -15,9 +15,12 @@ This is an app that I created to demonstrate the use of:
 - Modular Sass
 - JavaScript ES6
 - JavaScript Fetch API with async/await
-- ~~React Router~~
-- ~~React Hooks~~
-- ~~Helmet to inject meta into the &lt;head&gt;~~
+
+## Future Enhancements
+
+- React Router
+- React Hooks
+- Helmet to inject meta into the &lt;head&gt;
 
 [Working Demo](http://tvshows.jeffolivier.codes)
 
