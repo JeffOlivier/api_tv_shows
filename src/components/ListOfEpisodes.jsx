@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
-import CurrentShow from './CurrentShow';
-import SingleEpisode from './SingleEpisode';
-import Seasons from './Seasons';
-import styles from './ListOfEpisodes.module.scss';
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import CurrentShow from "./CurrentShow";
+import SingleEpisode from "./SingleEpisode";
+import Seasons from "./Seasons";
+import styles from "./ListOfEpisodes.module.scss";
 
 class ListOfEpisodes extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          show: {},
-          episodes: [],
-          season: 1,
-          numberOfSeasons: 1
+            show: {},
+            episodes: [],
+            season: 1,
+            numberOfSeasons: 1,
         };
 
         this.fetchShowInfo = this.fetchShowInfo.bind(this);
@@ -19,22 +20,27 @@ class ListOfEpisodes extends Component {
         this.updateSeason = this.updateSeason.bind(this);
     }
 
+    params = this.props.match.params;
+    showId = parseInt(this.params.showId);
+    season = parseInt(this.params.season) ? parseInt(this.params.season) : 1;
+
     componentDidMount() {
         this.fetchShowInfo();
     }
-    
+
     fetchShowInfo = async () => {
-        const showId = this.props.showId;
+        const showId = this.showId;
+
         if (showId !== undefined && Number.isInteger(showId) && showId > 0) {
             let apiFullUrl = `https://api.tvmaze.com/shows/${showId}`;
-        
-            const apiCall1 = await fetch(apiFullUrl)
-            const response1 = await apiCall1.json()
+
+            const apiCall1 = await fetch(apiFullUrl);
+            const response1 = await apiCall1.json();
 
             // If a show's information is return, then try to get all of it's episodes
             if (response1.status !== 404) {
                 this.setState({ show: response1 });
-                apiFullUrl += '/episodes';
+                apiFullUrl += "/episodes";
                 const apiCall2 = await fetch(apiFullUrl);
                 const response2 = await apiCall2.json();
 
@@ -42,22 +48,35 @@ class ListOfEpisodes extends Component {
                 if (response2.status !== 404) {
                     this.setState({ episodes: response2 });
                     this.getNumberOfSeasons(response2);
+
+                    if (
+                        this.season &&
+                        this.season <= this.state.numberOfSeasons
+                    ) {
+                        this.setState({ season: this.season });
+                        this.season = 1;
+                    }
                 }
             }
-        } 
+        }
     };
 
     getNumberOfSeasons(response2) {
         let seasonNumber = 1;
-        response2.map((episode) => (
-            seasonNumber = (episode.season > seasonNumber) ? episode.season : seasonNumber
-        ))
+        response2.map(
+            (episode) =>
+                (seasonNumber =
+                    episode.season > seasonNumber
+                        ? episode.season
+                        : seasonNumber)
+        );
         this.setState({ numberOfSeasons: seasonNumber });
     }
 
     updateSeason(newSeason) {
-        if (newSeason !== this.props.season) {
+        if (newSeason !== this.season) {
             this.setState({ season: newSeason });
+            this.props.history.push(`/show/${this.showId}/${newSeason}`);
         }
     }
 
@@ -67,17 +86,24 @@ class ListOfEpisodes extends Component {
                 <CurrentShow {...this.state.show} />
 
                 <div className={styles.episodesBlock}>
-                    <Seasons totalSeasons={this.state.numberOfSeasons} chosenSeason={this.state.season} updateSeason={this.updateSeason} />
+                    <Seasons
+                        totalSeasons={this.state.numberOfSeasons}
+                        chosenSeason={this.state.season}
+                        updateSeason={this.updateSeason}
+                    />
 
-                    {this.state.episodes.map(episode => {
-                        return (parseInt(episode.season) === parseInt(this.state.season)) ?
+                    {this.state.episodes.map((episode) => {
+                        return parseInt(episode.season) ===
+                            parseInt(this.state.season) ? (
                             <SingleEpisode {...episode} key={episode.id} />
-                        : '' }) 
-                    }
+                        ) : (
+                            ""
+                        );
+                    })}
                 </div>
             </div>
         );
     }
 }
- 
-export default ListOfEpisodes;
+
+export default withRouter(ListOfEpisodes);
