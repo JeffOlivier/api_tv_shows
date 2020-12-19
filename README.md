@@ -6,21 +6,21 @@
 
 This is an app that I created to demonstrate the use of:
 
-- React
-- Local state management
-- Multiple React components
-- Passing state and pointers to functions to child components
-- Accessing URL parameters
-- Responsive CSS Grid
-- Modular Sass
-- JavaScript ES6
-- JavaScript Fetch API with async/await
+-   React
+-   React Router
+-   Local state management
+-   Multiple React components
+-   Passing state and pointers to functions to child components
+-   Accessing URL parameters
+-   Responsive CSS Grid
+-   Modular Sass
+-   JavaScript ES6
+-   JavaScript Fetch API with async/await
 
 ## Future Enhancements
 
-- React Router
-- React Hooks
-- Helmet to inject meta into the &lt;head&gt;
+-   React Hooks
+-   Helmet to inject meta into the &lt;head&gt;
 
 [Working Demo](http://tvshows.jeffolivier.codes)
 
